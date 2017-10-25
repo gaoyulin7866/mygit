@@ -1,0 +1,25 @@
+/* pages/steps/step.wxss */
+.page{
+  background-color: #efeff4;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+.cont{
+  width: 100%;
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+}
+.time {
+  display: inline-block;
+  width: 50%;
+  font-size: 38rpx;
+  text-align: left;
+}
+.step{
+  display: inline-block;
+  width: 50%;
+  font-size: 38rpx;
+  text-align: right;
+}

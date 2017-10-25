@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <title>
+        <%= title %>
+    </title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+
+<body>
+    <form action="adduser/addname" method="post" enctype="multipart/form-data">
+        <div>
+            <span>用户名:</span>
+            <input type="text" name="username" placeholder="请输入用户名" maxlength="10">
+        </div>
+        <div>
+            <span>密码:</span>
+            <input type="password" name="password" placeholder="请输入密码" maxlength="20">
+        </div>
+        <div>
+            <span>再输入:</span>
+            <input type="password" name="passwords" placeholder="再一次输入密码">
+        </div>
+        <div class="files">
+            <span>上传头像</span>
+            <input type="file" name="filename" required>
+        </div>
+        <p>
+            <%= msg %>
+        </p>
+        <button class="btn" type="submit">注册</button>
+    </form>
+</body>
+
+</html>
+
+
+
+
+

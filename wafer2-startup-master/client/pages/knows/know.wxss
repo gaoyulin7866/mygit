@@ -1,0 +1,28 @@
+/* pages/knows/know.wxss */
+.wrapper {
+  background: #efeff4;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-left: 1%;
+  padding-right: 1%;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.wapurl{
+  display: block;
+  margin: 0 auto;
+}
+.know {
+  width: 100%;
+  background-color: #fff;
+  margin-top: 20rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+  border-radius: 15rpx;
+}
+.know text {
+  display: block;
+  width: 100%;
+  color: #000;
+}

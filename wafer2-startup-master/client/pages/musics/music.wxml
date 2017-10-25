@@ -1,0 +1,28 @@
+<view class="wrapper page">
+    <view class="page__bd">
+        <view class="weui-search-bar">
+            <view class="weui-search-bar__form">
+                <view class="weui-search-bar__box">
+                    <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
+                    <input type="text" class="weui-search-bar__input" placeholder="请输入药品名" value="{{inputVal}}" focus="{{inputShowed}}" bindconfirm="search" confirm-type="search" />
+                    <view class="weui-icon-clear" wx:if="{{inputVal.length > 0}}" bindtap="clearInput">
+                        <icon type="clear" size="14"></icon>
+                    </view>
+                </view>
+                <label class="weui-search-bar__label" hidden="{{inputShowed}}" bindtap="showInput">
+                    <icon class="weui-icon-search" type="search" size="14"></icon>
+                    <view class="weui-search-bar__text">请输入歌名或人名</view>
+                </label>
+            </view>
+            <view class="weui-search-bar__cancel-btn" hidden="{{!inputShowed}}" bindtap="hideInput">取消</view>
+        </view>
+    </view>
+    <view bindtap="_search" data-albumpic_big="{{item.albumpic_big}}" data-name="{{item.songname}}" data-src='{{item.m4a}}' data-pop='{{item.singername}}' class='med' wx:for="{{musics}}" wx:key="{{index}}" >
+      <text>歌名：{{item.songname}}--{{item.singername}}</text>
+    </view> 
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

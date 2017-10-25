@@ -1,0 +1,10 @@
+<view class="wrapper">
+  <view bindtap="search" data-nam="{{item.name}}" data-id="{{item.id}}" class='know' wx:for="{{info}}" wx:key="{{index}}">
+    <text>{{item.name}}</text>
+  </view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

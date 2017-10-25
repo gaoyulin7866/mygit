@@ -1,0 +1,5 @@
+<view class="page">
+  <image class='img' src='{{obj.albumpic_big}}'></image>
+  <audio  class='audio' src="{{obj.url}}" loop="true" controls="true" poster="{{obj.albumpic_big}}" author="{{obj.pop}}" name="{{obj.name}}">
+  </audio>
+</view>

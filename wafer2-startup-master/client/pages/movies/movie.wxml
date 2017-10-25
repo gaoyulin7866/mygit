@@ -1,0 +1,11 @@
+<view class="wrapper">
+  <view class='wrapper-move' wx:for="{{baseUrl}}" wx:key="{{index}}">
+    <text>{{item.title}}</text>
+    <video poster="{{item.images.medium}}" src='http://vt3.doubanio.com/201710131750/546fe421408f2e8dd98960727876e7dd/view/movie/M/302210820.mp4'></video>
+  </view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

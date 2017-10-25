@@ -1,0 +1,70 @@
+<view class="wrapper">
+  <view class='head'>
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}">
+      <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+        <swiper-item>
+          <image src="{{item}}" class="slide-image" mode='aspectFill' />
+        </swiper-item>
+      </block>
+    </swiper>
+    <view class='img-cont'>
+      <image class='img' src='{{info.avatarUrl}}' />
+      <view class='names'>
+        <text class='name'>姓名:{{ info.nickName }}</text>
+        <text class='nation'>地址:{{ info.country + info.province }}</text>
+        <text class='weather'>性别:{{ info.gender==1?'男':'女' }}</text>
+      </view>
+    </view>
+  </view>
+  <view class='fun'>
+    <view class='step' bindtap="step">
+      <image class='image' src='../../images/step.png'></image>
+      <text>步数</text>
+    </view>
+    <view class='step' bindtap="chat">
+      <image class='image' src='../../images/chat.png'></image>
+      <text>聊天室</text>
+    </view>
+    <view class='step' bindtap="doUpload">
+      <image class='image' src='../../images/uoload.png'></image>
+      <text>上传图片</text>
+    </view>
+    <view class='step' bindtap="downimg">
+      <image class='image' src='../../images/myimgs.png'></image>
+      <text>我的图片</text>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='content-know' bindtap="knows">
+      <text>健康知识</text>
+      <image src='../../images/next.png'></image>
+    </view>
+    <view class='content-med' bindtap="meds">
+      <text>药品</text>
+      <image src='../../images/next.png'></image>
+    </view>
+    <view class='content-movie' bindtap="movies">
+      <text>电影</text>
+      <image src='../../images/next.png'></image>
+    </view>
+    <view class='content-movie' bindtap="music">
+      <text>听音乐</text>
+      <image src='../../images/next.png'></image>
+    </view>
+    <view class='content-info'>
+      <view class='info' wx:for="{{helthy}}" wx:key="{{index}}">
+        <text class='title'>{{item.title}}</text>
+        <view class='cont'>{{item.text}}</view>
+        <text class='time'>{{item.ct}}</text>
+      </view>
+    </view>
+    <view bindtap="refer" class='foot' hover="true" hover-class='hovers' hover-start-time="0" hover-stay-time="100">
+      更新
+    </view>
+  </view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

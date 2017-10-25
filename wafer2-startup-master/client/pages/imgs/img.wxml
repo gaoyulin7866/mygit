@@ -1,0 +1,9 @@
+<view class="page">
+  <text class='my'>我的图片</text>
+  <view class='wrapper'>
+    <view class='wrap' wx:for="{{img}}" wx:key="{{index}}">
+      <image class='img' src='{{item.imgurl}}' bindtap="down" data-nam="{{item.name}}" data-id="{{item.id}}"></image>
+      <text class='title'>{{item.name}}</text>
+    </view>
+  </view>
+</view>

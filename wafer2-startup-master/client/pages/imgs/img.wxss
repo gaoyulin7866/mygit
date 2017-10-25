@@ -1,0 +1,52 @@
+/* pages/imgs/img.wxss */
+page{
+  height: 100%;
+}
+.page {
+  background: rgba(0,0,0,0.7);
+  height: 100%;
+  box-sizing: border-box;
+  padding-left: 1vw;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+}
+.my{
+  display: block;
+  width: 98vw;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #fff;
+  margin-right: 1vw;
+  border-radius: 15rpx;
+}
+.wrap {
+  margin-top: 20rpx;
+  float: left;
+  width: 48.5vw;
+  margin-right: 1vw;
+}
+.img {
+  display: block;
+  width: 100%;
+  height: 400rpx;
+}
+.title{
+  display: block;
+  width: 47vw;
+  height: 60rpx;
+  line-height: 60rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  background: rgba(0,0,0,0.2);
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+  color:#fff;
+}
+.wrapper:after{
+  display:block;
+  clear:both;
+  content:"";
+  visibility:hidden;
+  height:0
+}

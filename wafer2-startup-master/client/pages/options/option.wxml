@@ -1,0 +1,10 @@
+<view class="page">
+  <text class='title'>{{_option.title}}</text>
+  <scroll-view class='cont' scroll-y="true">{{_option.cont}}</scroll-view>
+  <image class='img' src='{{_option.img}}'></image>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

@@ -1,0 +1,17 @@
+/* pages/voice/voice.wxss */
+.page{
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0,0,0,0.8);
+  box-sizing: border-box;
+  padding: 10vh 6vw 0;
+}
+.img{
+  display: block;
+  width: 88vw;
+  height: 600rpx;
+}
+.audio{
+  display: block;
+  margin-top: 40rpx;
+}

@@ -1,0 +1,29 @@
+.page{
+  background-color: #efeff4;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.cont{
+  margin-top: 20rpx;
+  background-color: #fff;
+  border-radius: 10rpx;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.stitle{
+  display: block;
+  font-size: 30rpx;
+  color:chocolate;
+  width: 100%;
+  text-align: center;
+}
+.content{
+  text-indent: 60rpx;
+  font-size: 38rpx;
+}
+.ctime{
+  font-size: 30rpx;
+  color:#ccc;
+  display: block;
+  text-align: right;
+}

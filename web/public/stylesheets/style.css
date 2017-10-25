@@ -1,0 +1,63 @@
+html,body{
+	height: 100%;
+}
+body {
+	box-sizing: border-box;
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url('../images/bg.png') no-repeat;
+  background-size: 100% 100%;
+  margin: 0;
+}
+
+a {
+  color: #00B7FF;
+}
+form{
+	width: 500px;
+	margin: 50px auto;
+	padding: 60px 100px;
+	border: 1px solid #ccc;
+	border-radius: 10px;
+}
+form .btn {
+	width: 80px;
+	height: 30px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background-color: #fff;
+	margin-left: 210px;
+	opacity: 0.5;
+	cursor: pointer;
+}
+form div:after{display:block;content: " ";clear:both;height:0;}
+form div span {
+	float: left;
+	width: 60px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color:#fff;
+}
+form div input {
+	float: left;
+	box-sizing: border-box;
+	margin-bottom: 20px;
+	width: 438px;
+	height: 40px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	opacity: 0.5;
+	padding-left: 10px;
+}
+.files input {
+	padding: 10px;
+}
+p{
+	width: 100%;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	color: #fff;
+}
+

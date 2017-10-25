@@ -1,0 +1,24 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/chat/chat",
+        "pages/helth/index",
+        "pages/movies/movie",
+        "pages/meds/med",
+        "pages/knows/know",
+        "pages/main/index",
+        "pages/options/option",
+        "pages/news/new",
+        "pages/comps/comp",
+        "pages/steps/step",
+        "pages/imgs/img",
+        "pages/musics/music",
+        "pages/voice/voice"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#333",
+        "navigationBarTitleText": "总有刁民想害朕",
+        "navigationBarTextStyle": "white"
+    }
+}

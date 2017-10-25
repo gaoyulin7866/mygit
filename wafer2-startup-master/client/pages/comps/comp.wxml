@@ -1,0 +1,12 @@
+<view class="page">
+  <view class='cont'>
+    <text class="stitle">{{info.title}}</text>
+    <view class='content'>{{info.content}}</view>
+    <text class='ctime'>{{info.time}}</text>
+  </view>
+  <view class="body-view">
+    <loading hidden="{{hidden}}" bindchange="loadingChange">
+      加载中...
+    </loading>
+  </view>
+</view>

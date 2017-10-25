@@ -1,0 +1,51 @@
+{
+	"client": "./client",
+	"svr": "./server",
+	"appid": "wxf1583fc52009cf66",
+	"projectname": "%E5%B0%8F%E7%A8%8B%E5%BA%8F",
+	"condition": {
+		"weapp": {
+			"current": -1,
+			"list": [
+				{
+					"id": 0,
+					"name": "电影",
+					"pathName": "pages/movies/movie",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "搜索",
+					"pathName": "pages/meds/med",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "news",
+					"pathName": "pages/news/new",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "步数",
+					"pathName": "pages/steps/step",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "相册",
+					"pathName": "pages/imgs/img",
+					"query": ""
+				}
+			]
+		},
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		}
+	}
+}
