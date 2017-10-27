@@ -2,12 +2,15 @@ var express = require('express');
 var router = express.Router();
 var mysql = require('mysql');
 var async = require('async')
+var crypto = require("crypto");
+var addCrypto = require("../addCrypto");
+var addKey = 'MyFirstWeb'
 var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     port: '3306',
-    password: '',
-    // password: 'my-new-password',
+    // password: '',
+    password: 'my-new-password',
     database: 'python1',
     connectTimeout: 5000,
     multipleStatements: true,
@@ -32,8 +35,9 @@ router.post('/index', function(req, res, next) {
         }
         async.series([
             function(callback){
+                let newPas = addCrypto.aesEncrypt(req.body.password, addKey)
                 for (var i = 0; i < result.length; i++) {
-                    if ((req.body.username == result[i].name)&&(req.body.password == result[i].pwd)) {
+                    if ((req.body.username == result[i].name)&&(newPas == result[i].pwd)) {
                         res.cookie("user", {username: req.body.username}, {maxAge: 600000 , httpOnly: false});
                         res.cookie("users",{url: result[i].url}, {maxAge: 600000 , httpOnly: false});
                         return res.redirect('/index');

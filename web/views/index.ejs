@@ -9,123 +9,415 @@
     <link rel='stylesheet' href='/stylesheets/index.css' />
     <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
     <script type="text/javascript" src="/javascripts/jquery.js"></script>
+    <script type="text/javascript" src="/javascripts/socket.io.js"></script>
+    <style type="text/css">
+    header {
+        background-color: #1e0059;
+        height: 100vh;
+        margin: 0;
+        overflow: hidden;
+        -webkit-perspective: 5em;
+        perspective: 5em;
+        position: relative;
+    }
+
+    .wrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 100;
+    }
+
+    header::after {
+        background-color: inherit;
+        border-radius: 50%;
+        box-shadow: 0 0 2em 2em #1e0059;
+        content: "";
+        height: 1em;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        width: 1em;
+    }
+
+    .cylinder {
+        -webkit-animation-iteration-count: infinite;
+        animation-iteration-count: infinite;
+        -webkit-animation-name: tunnel;
+        animation-name: tunnel;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+        left: 50%;
+        position: absolute;
+        top: 50%;
+        -webkit-transform-style: preserve-3d;
+        transform-style: preserve-3d;
+        -webkit-transform: rotatex(90deg) rotatey(0) translatey(-25em);
+        transform: rotatex(90deg) rotatey(0) translatey(-25em);
+    }
+
+    .cylinder:nth-child(1) {
+        -webkit-animation-duration: 8s;
+        animation-duration: 8s;
+    }
+
+    .cylinder:nth-child(2) {
+        -webkit-animation-duration: 4s;
+        animation-duration: 4s;
+    }
+
+    .side {
+        background-image: url('../images/img.jpg');
+        background-size: 32em 10em;
+        -webkit-filter: hue-rotate(-11.25deg);
+        filter: hue-rotate(-11.25deg);
+        height: 40em;
+        position: absolute;
+        -webkit-transform-origin: 0;
+        transform-origin: 0;
+        width: 2em;
+    }
+
+    .side:nth-child(1) {
+        background-position: -2em;
+        -webkit-transform: rotatey(22.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(22.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(2) {
+        background-position: -4em;
+        -webkit-transform: rotatey(45deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(45deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(3) {
+        background-position: -6em;
+        -webkit-transform: rotatey(67.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(67.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(4) {
+        background-position: -8em;
+        -webkit-transform: rotatey(90deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(90deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(5) {
+        background-position: -10em;
+        -webkit-transform: rotatey(112.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(112.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(6) {
+        background-position: -12em;
+        -webkit-transform: rotatey(135deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(135deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(7) {
+        background-position: -14em;
+        -webkit-transform: rotatey(157.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(157.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(8) {
+        background-position: -16em;
+        -webkit-transform: rotatey(180deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(180deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(9) {
+        background-position: -18em;
+        -webkit-transform: rotatey(202.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(202.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(10) {
+        background-position: -20em;
+        -webkit-transform: rotatey(225deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(225deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(11) {
+        background-position: -22em;
+        -webkit-transform: rotatey(247.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(247.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(12) {
+        background-position: -24em;
+        -webkit-transform: rotatey(270deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(270deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(13) {
+        background-position: -26em;
+        -webkit-transform: rotatey(292.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(292.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(14) {
+        background-position: -28em;
+        -webkit-transform: rotatey(315deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(315deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(15) {
+        background-position: -30em;
+        -webkit-transform: rotatey(337.5deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(337.5deg) translate3d(-50%, 0, 5em);
+    }
+
+    .side:nth-child(16) {
+        background-position: -32em;
+        -webkit-transform: rotatey(360deg) translate3d(-50%, 0, 5em);
+        transform: rotatey(360deg) translate3d(-50%, 0, 5em);
+    }
+
+    .cylinder:nth-child(2) .side {
+        opacity: 0.625;
+    }
+
+    @-webkit-keyframes tunnel {
+        100% {
+            -webkit-transform: rotatex(90deg) rotatey(360deg) translatey(-15em);
+            transform: rotatex(90deg) rotatey(360deg) translatey(-15em);
+        }
+    }
+
+    @keyframes tunnel {
+        100% {
+            -webkit-transform: rotatex(90deg) rotatey(360deg) translatey(-15em);
+            transform: rotatex(90deg) rotatey(360deg) translatey(-15em);
+        }
+    }
+    </style>
 </head>
 
 <body>
-	<header id="header" class="header">
-		<div class="title">
-	   		不要胡说！
-   		</div>
-   		<div class="info">
-   			<img src="<%= infos.url %>" alt="">
-   			<span class="user_name"><%= infos.name %></span>
-   			<span class="login"><a style="display: block;width: 100%;height: 100%;" href="./login">登录</a></span>
-   			<span class="adduser"><a style="display: block;width: 100%;height: 100%;" href="./adduser">注册</a></span>
-   		</div>
-	</header>
-	<div class="wrapper">
-		<div class="wrap_lf">
-	   		<div class="myInfo">
-	   			<img src="../images/my.jpg">
-	   			<span><i>站长: </i><em>一片大雁向北飞</em></span>
-	   			<span><i>积分: </i><em>9999</em></span>
-				<span><i>信息: </i><em>gitHub暂时没有,敬请期待</em></span>
-				<span><i>网站用途: </i><em>供有兴趣的网友评价或者吐槽电影,歌曲,书籍等,内容一概与站长无关.本网站开发初衷仅仅用来练习使用node的熟练度,不作为商业或者其他任何用途,并且,由于经费问题,本网站自上线之日起一个月内下线.哈哈哈～～～</em></span>	
-	   		</div>
-	    </div>
-	    <section class="content">
-	    	<div class="content_main">
-	    	<% for(var i = 0;i < infos.data.length;i++){%>
-		        <dl>
-		        	<dt>
-		        		<span class="content_name"><a href=""><%= infos.data[i].username %></a></span>
-		   				<span class="content_title"><%= infos.data[i].name %></span>
-		   				<span class="content_sort"><%= infos.data[i].sort %></span>
-		   				<span class="content_num">积分:<i><%= infos.data[i].grade %></i></span>
-		   				<span class="content_floor"><em><%= infos.data[i].id %></em>楼</span>
-		        	</dt>
-		        	<dd>
-		   				<p><%= infos.data[i].cont %></p>
-		   				<div>
-		   					<% for(var j = 0;j < infos.comment[i].length;j++){%>
-		   						<em><%= infos.comment[i][j].name %> 说:<%= infos.comment[i][j].cont %><i>&nbsp;&nbsp;&nbsp;<%= infos.comment[i][j].time %></i></em>
-		   					<%}%>
-		   				</div>
-		   				<input class="keydown" onkeydown="keydown('<%= infos.data[i].id %>')" type="text" name="content_inp" value="" placeholder="我有话说~~" maxlength="100">
-		   				<span>时间:<%= infos.data[i].time %></span>
-		        	</dd>
-		        </dl>
-		    <%}%>
-	    	</div>
-	    	<div class="page">
-	    		<span>页</span>
-	    		<select id="select_page" class="select_page" name="pages">
-	    			<% for(var j = 1;j <= num;j++){%>
-   						<option value="<%= j %>"><%= j %></option>
-   					<%}%>
-	    		</select>
-	    		<span>第</span>
-	    	</div>
-	    	<div class="add_cont">
-		    	<form action="index/putdata" method="post">
-		    		<input class="add_name" type="text" name="add_name" placeholder="请输入名称">
-		    		<select class="add_sort" name="add_sort">
-		    			<option value="其他">其他</option>
-		    			<option value="电影">电影</option>
-		    			<option value="书">书</option>
-		    			<option value="琴">琴</option>
-		    			<option value="棋">棋</option>
-		    			<option value="画">画</option>
-		    			<option value="运动">运动</option>
-		    			<option value="旅游">旅游</option>
-		    			<option value="自然">自然</option>
-		    			<option value="人物">人物</option>
-		    			<option value="游戏">游戏</option>
-		    			<option value="技术">技术</option>
-		    		</select>
-		    		<textarea class="add_text" type="textarea" name="add_text" placeholder="请输入内容" maxlength="200"></textarea>
-		    		<button type="submit">发表</button>
-		    	</form>
-	    	</div>
-	    </section>
-	    <div class="wrap_lr">
-	   		<div class="wrap_lr_search">
-	   			<label>搜索:<input type="text" class="search" name="search" value="" placeholder="搜索类别"></label>
-	   			<span class="glyphicon glyphicon-search" onclick="search()"></span>
-	   		</div>
-	   		<div class="wrap_lr_sort">
-		   		<% for(var i = 0;i < infos.sorts.length;i++){%>
-			        <span class="tab<%= i %>" onclick="tab('<%= infos.sorts[i] %>')"><%= infos.sorts[i] %></span>
-			    <%}%>
-	   		</div>
-	    </div>
-	</div>
-	<footer class="foot">
-		全部内容来自网络,仅供学习node,谢谢!&nbsp;&nbsp;&nbsp;如有好的建议,欢迎留言！
-	</footer>
+    <header id="header" class="header">
+        <div class="cylinder">
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+        </div>
+        <div class="cylinder">
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+            <div class="side"></div>
+        </div>
+        <div class="wrap">
+            <div class="title">
+                说你想说
+            </div>
+            <div class="search_word">
+                <label>
+                    <input type="text" class="search_word_inp" placeholder="搜你想搜">
+                    <span class="glyphicon glyphicon-search" onclick="find_word()"></span>
+                </label>
+            </div>
+            <div class="info">
+                <img src="<%= infos.url %>" alt="">
+                <span class="user_name"><%= infos.name %></span>
+                <span class="login"><a style="display: block;width: 100%;height: 100%;" href="./login">登录</a></span>
+                <span class="adduser"><a style="display: block;width: 100%;height: 100%;" href="./adduser">注册</a></span>
+            </div>
+        </div>
+    </header>
+    <div class="wrapper">
+        <div class="wrap_lf">
+            <div class="myInfo">
+                <img src="../images/my.jpg">
+                <span><i>站长: </i><em>一片大雁向北飞</em></span>
+                <span><i>积分: </i><em>9999</em></span>
+                <span><i>信息: </i><em>gitHub暂时没有,敬请期待</em></span>
+                <span><i>网站用途: </i><em>供有兴趣的网友评价或者吐槽电影,歌曲,书籍等,内容一概与站长无关.本网站开发初衷仅仅用来练习使用node的熟练度,不作为商业或者其他任何用途,并且,由于经费问题,本网站自上线之日起一个月内下线.哈哈哈～～～</em></span>
+            </div>
+            <div class="joke">
+                <p>每日一笑:</p>
+                <ul>
+                </ul>
+            </div>
+            <div class="joke_gif">
+                <p>gif笑话:</p>
+                <ul>
+                </ul>
+            </div>
+            <div class="joke_img">
+                <p>图片笑话:</p>
+                <ul>
+                </ul>
+            </div>
+        </div>
+        <section class="content">
+            <div class="content_main">
+                <% for(var i = 0;i < infos.data.length;i++){%>
+                    <dl>
+                        <dt>
+                            <span class="content_name"><a href=""><%= infos.data[i].username %></a></span>
+                            <span class="content_title"><%= infos.data[i].name %></span>
+                            <span class="content_sort"><%= infos.data[i].sort %></span>
+                            <span class="content_num">积分:<i><%= infos.data[i].grade %></i></span>
+                            <span class="content_floor"><em><%= infos.data[i].id %></em>楼</span>
+                        </dt>
+                        <dd>
+                            <p>
+                                <%= infos.data[i].cont %>
+                            </p>
+                            <div>
+                                <% for(var j = 0;j < infos.comment[i].length;j++){%>
+                                    <em><%= infos.comment[i][j].name %> 说:<%= infos.comment[i][j].cont %><i>&nbsp;&nbsp;&nbsp;<%= infos.comment[i][j].time %></i></em>
+                                    <%}%>
+                            </div>
+                            <input class="keydown" onkeydown="keydown('<%= infos.data[i].id %>')" type="text" name="content_inp" value="" placeholder="我有话说~~" maxlength="100">
+                            <span>时间:<%= infos.data[i].time %></span>
+                        </dd>
+                    </dl>
+                    <%}%>
+            </div>
+            <div class="page">
+                <span>页</span>
+                <select id="select_page" class="select_page" name="pages">
+                    <% for(var j = 1;j <= num;j++){%>
+                        <option value="<%= j %>">
+                            <%= j %>
+                        </option>
+                        <%}%>
+                </select>
+                <span>第</span>
+            </div>
+            <div class="add_cont">
+                <form action="index/putdata" method="post">
+                    <input class="add_name" type="text" name="add_name" placeholder="请输入名称">
+                    <select class="add_sort" name="add_sort">
+                        <option value="其他">其他</option>
+                        <option value="电影">电影</option>
+                        <option value="书">书</option>
+                        <option value="琴">琴</option>
+                        <option value="棋">棋</option>
+                        <option value="画">画</option>
+                        <option value="运动">运动</option>
+                        <option value="旅游">旅游</option>
+                        <option value="自然">自然</option>
+                        <option value="人物">人物</option>
+                        <option value="游戏">游戏</option>
+                        <option value="技术">技术</option>
+                    </select>
+                    <textarea class="add_text" type="textarea" name="add_text" placeholder="请输入内容" maxlength="200"></textarea>
+                    <button type="submit">发表</button>
+                </form>
+            </div>
+        </section>
+        <div class="wrap_lr">
+            <div class="wrap_lr_search">
+                <label>搜索:
+                    <input type="text" class="search" name="search" value="" placeholder="搜索类别">
+                </label>
+                <span class="glyphicon glyphicon-search" onclick="search()"></span>
+            </div>
+            <div class="wrap_lr_sort">
+                <% for(var i = 0;i < infos.sorts.length;i++){%>
+                    <span class="tab<%= i %>" onclick="tab('<%= infos.sorts[i] %>')"><%= infos.sorts[i] %></span>
+                    <%}%>
+            </div>
+            <div class="news">
+                <p>即时资讯:</p>
+                <ul>
+                </ul>
+                <p><span onclick="refresh()">换一批</span></p>
+            </div>
+        </div>
+    </div>
+    <footer class="foot">
+        全部内容来自网络,仅供学习node,谢谢!&nbsp;&nbsp;&nbsp;如有好的建议,欢迎留言！
+    </footer>
 </body>
 <script type="text/javascript" src="/javascripts/index.js"></script>
+<script src="/javascripts/mo.min.js"></script>
+<script type="text/javascript">
+// var socket = io('ws://115.159.24.130:7866');
+var socket = io('ws://localhost:7866');
+socket.on('disconnect', function() {
+    console.log("与服务其断开");
+});
+socket.on('connect', function() {
+    console.log("连接到服务器");
+});
+socket.on('notification', function(data) {
+    var str = '<em>' + data.cont.name + ' 说:' + data.cont.val + '&nbsp;&nbsp;<i>' + data.time + '</i></em>'
+    $('dd').eq(data.cont.index).children().eq(1).append(str)
+    $('.keydown')[data.cont.index].value = ""
+});
+
+var _extends = Object.assign || function(target) {
+    for (var i = 1; i < arguments.length; i++) {
+        if (window.CP.shouldStopExecution(2)) { break; }
+        var source = arguments[i];
+        for (var key in source) { if (window.CP.shouldStopExecution(1)) { break; } if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } }
+        window.CP.exitedLoop(1);
+    }
+    window.CP.exitedLoop(2);
+    return target;
+};
+
+var OPTS = {
+    fill: 'none',
+    radius: 25,
+    strokeWidth: { 50: 0 },
+    scale: { 0: 1 },
+    angle: { 'rand(-35, -70)': 0 },
+    duration: 500,
+    left: 0,
+    top: 0,
+    easing: 'cubic.out'
+};
+
+var circle1 = new mojs.Shape(_extends({}, OPTS, {
+    stroke: '#FF8966'
+}));
+
+var circle2 = new mojs.Shape(_extends({}, OPTS, {
+    radius: { 0: 15 },
+    strokeWidth: { 30: 0 },
+    stroke: '#E5446D',
+    delay: 'rand(75, 150)'
+}));
+
+document.addEventListener('click', function(e) {
+    circle1.tune({ x: e.pageX, y: e.pageY }).replay();
+
+    circle2.tune({ x: e.pageX, y: e.pageY }).replay();
+});
+</script>
+
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
