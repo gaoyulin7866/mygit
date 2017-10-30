@@ -9,6 +9,7 @@ var COS = require('cos-nodejs-sdk-v5');
 var addKey = 'MyFirstWeb'
 var storge = multer.diskStorage({
     destination: function (req, file, cb) {
+        // cb(null, '../uploads')
         cb(null, 'uploads')
     },
     filename: function (req, file, cb) {
@@ -27,18 +28,15 @@ var connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     port: '3306',
-    // password: '',
-    password: 'my-new-password',
+    password: '',
+    // password: 'my-new-password',
     database: 'python1',
     connectTimeout: 5000,
     multipleStatements: true,
     charset: 'UTF8'
 })
-
 connection.connect();
-
 router.get('/', function(req, res, next) {
-    
     var num = req.cookies.redirect?req.cookies.redirect.num:'0'
     res.cookie("redirect", {num: '0'}, {maxAge: 600000 , httpOnly: false});
     if(num == '0'){
@@ -53,6 +51,7 @@ router.get('/', function(req, res, next) {
         res.render('adduser', { title: '注册', msg: '注册人数已满,请明天再注册' });
     }
 });
+console.log(upload.single('filename'),'666666')
 router.post('/addname', upload.single('filename'), function(req, res, next) {
     if(req.body.password!=req.body.passwords){
         res.cookie("redirect", {num: '1'}, {maxAge: 600000 , httpOnly: false});
